@@ -6,7 +6,7 @@
 
 //p1 score, p2 score
 
-//create result array of tuples (Jim, Bob, winner)
+//create result list of tuples, Example (Jim, Bob, winner*)
 
 //loop -> run as long as neither == 2
   //random number generate for both
