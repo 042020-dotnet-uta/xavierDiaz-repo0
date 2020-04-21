@@ -13,6 +13,11 @@ namespace hello
                 WriteLine("test "+i);
                 i--;
             }
+            WriteLine("1 + 2 = "+addMe(1,2));
+        }
+
+        static public int addMe(int a, int b){
+            return (a+b);
         }
     }
 }
