@@ -1,0 +1,22 @@
+// Created by Xavier Diaz, Jeff, Isaiah Taala
+// 4-21-2020
+// Rock Paper Scissors pseudocode
+
+//get user names - assign p1 p2 strings
+
+//p1 score, p2 score
+
+//create result array of tuples (Jim, Bob, winner)
+
+//loop -> run as long as neither == 2
+  //random number generate for both
+  //if statements to see who won
+  //increment score of winner, or nothing in tie
+  //create tuple and add to array
+
+//loop -> print out result array round i+1 Jim played result[0], bob played result[1] winner result[2]
+  //if tie say tie instead of winner
+
+//number of ties = legth(result) - p1 & p2 scores
+
+//player x won score 1 - score 2 number of ties
