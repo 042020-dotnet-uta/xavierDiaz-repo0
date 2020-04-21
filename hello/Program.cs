@@ -1,4 +1,4 @@
-﻿using System;
+﻿using static System.Console;
 
 namespace hello
 {
@@ -6,12 +6,12 @@ namespace hello
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.WriteLine("Hello Universes!");
+            WriteLine("Hello World!");
+            WriteLine("Hello Universes!");
             int i = 20;
             while(i > 0){
-                Console.WriteLine("test "+i);
-                i = i - 1;
+                WriteLine("test "+i);
+                i--;
             }
         }
     }
