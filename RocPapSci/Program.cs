@@ -42,8 +42,6 @@ namespace RocPapSci
                 }
             }
             //print out the game records
-            //int sizeL;
-            //sizeL = round_data.Count;
             int tieCount = 0;
             for(int i = 0; i < round_data.Count; i++){
                 if(round_data[i][2] == "tie"){
