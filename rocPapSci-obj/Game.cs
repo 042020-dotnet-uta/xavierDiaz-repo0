@@ -5,6 +5,7 @@ namespace rocPapSci_obj
 {
     public class Game
     {
+        public int GameID{get;set;}
         private Player _p1;
         private Player _p2;
         private int _p1S;

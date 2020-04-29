@@ -4,6 +4,7 @@ namespace rocPapSci_obj
 {
     public class Player
     {
+        public int PlayerID{get;set;}
         private string _name;
         private int _wins;
         private int _losses;

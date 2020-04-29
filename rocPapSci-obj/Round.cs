@@ -4,6 +4,7 @@ namespace rocPapSci_obj
 {
     public class Round
     {
+        public int RoundID{get;set;}
         public string _p1Play;
         public string _p2Play;
         private int _rWin;
