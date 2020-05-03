@@ -8,9 +8,33 @@ namespace ProjectZero
     {
         static void Main(string[] args)
         {
+            Start:
             int action = GetAction();
             PerformAction(action);
+            if(GoAgain() == 1)
+                goto Start;
+            else
+                Console.WriteLine("Have a nice day");
+        }
 
+        public static int GoAgain()
+        {
+            Console.WriteLine();
+            Console.Write("want to continue? (y/n)>> ");
+            Console.WriteLine();
+            while (true)
+            {
+                string InP = Console.ReadLine();
+                if (InP == "y")
+                    return 1;
+                else if (InP == "n")
+                    return 0;
+                else
+                {
+                    Console.Write("Invalid try again >> ");
+                    continue;
+                }
+            }
         }
 
         public static void PerformAction(int action)
@@ -59,7 +83,29 @@ namespace ProjectZero
         }
         public static void ActionThree()
         {
-            Console.WriteLine("welcome to action three");
+            Console.WriteLine("Ok lets search for a customer");
+            Customer c = new Customer();
+            Console.WriteLine("Search with ID number or first name, last name? enter 'id' or 'name' | id recommended ");
+            Console.Write(">> ");
+            while (true)
+            {
+                string inP = Console.ReadLine();
+                if (inP == "id")
+                {
+                    c.SearchCustomer(0);
+                    break;
+                }
+                else if ( inP == "name")
+                {
+                    c.SearchCustomer(1);
+                    break;
+                }
+                else
+                {
+                    Console.Write("Invalid - try again >> ");
+                    continue;
+                }
+            }
         }
         public static void ActionFour()
         {
@@ -95,6 +141,7 @@ namespace ProjectZero
             Console.WriteLine("8 -> display all item details");
             while (true)
             {
+                Console.Write(">> ");
                 string act = Console.ReadLine();
                 switch (act)
                 {

@@ -75,6 +75,58 @@ namespace ProjectZero
 			//to add to db
 		}
 
+		public void SearchCustomer(int version)
+		// version >> 0 -> Id : 1 -> Name
+		{
+			using (var db = new Pzero_DbContextClass())
+			{
+				if ( version == 0)
+				{
+					Console.Write("Enter their ID: ");
+					int input = Convert.ToInt32(Console.ReadLine());
+					var cust = db.Customers
+						.FromSqlInterpolated($"SELECT * FROM Customers WHERE CustomerID = {input}")
+						.ToList();
+					if (cust.Count() >= 1)
+					{
+						foreach (var C in cust)// since it's using ID should only be one row large
+						{
+							Console.WriteLine($"FName ({C.FName}) | LName ({C.LName}) | Default Store ({C.DefaultSto})");
+						}
+					}
+					else
+					{
+						Console.WriteLine("No customers were found with that ID");
+					}
+				}
+				else if (version == 1)
+				{
+					Console.Write("Enter their first name (Case Sensitive) >> ");
+					string first = Console.ReadLine();
+					Console.Write("Enter their last name (Case Sensitive) >> ");
+					string last = Console.ReadLine();
+					var cust = db.Customers
+						.FromSqlInterpolated($"SELECT * FROM Customers WHERE FName = {first} AND LName = {last}")
+						.ToList();
+					if (cust.Count() >= 1)
+					{
+						foreach (var C in cust)// since it's using ID should only be one row large
+						{
+							Console.WriteLine($"CustomerID ({C.CustomerID}) | Default Store ({C.DefaultSto})");
+						}
+					}
+					else
+					{
+						Console.WriteLine("No customers were found under that that name");
+					}
+				}
+				else
+				{
+					Console.WriteLine("huh this is an error");
+				}
+			}
+		}
+
 		public void ReadCustomers()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -113,8 +165,7 @@ namespace ProjectZero
 				catch
 				{
 				}
-				Console.WriteLine("New entry added");
-				this.ReadCustomers();
+				Console.WriteLine($"New entry added ID: {custSize}");
 			}
 		}
 	}
