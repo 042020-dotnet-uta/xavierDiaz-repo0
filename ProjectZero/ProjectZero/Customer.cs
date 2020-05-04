@@ -69,11 +69,6 @@ namespace ProjectZero
 		{
 			//nothing
 		}
-		public Customer(int i)
-		{
-			//run this when making a new customer 
-			//to add to db
-		}
 
 		public void SearchCustomer(int version)
 		// version >> 0 -> Id : 1 -> Name

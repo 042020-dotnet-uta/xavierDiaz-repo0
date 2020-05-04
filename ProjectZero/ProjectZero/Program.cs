@@ -109,23 +109,33 @@ namespace ProjectZero
         }
         public static void ActionFour()
         {
-            Console.WriteLine("welcome to action four");
+            Console.WriteLine("Ok lets see the details of an order");
+            Order o = new Order();
+            o.ShowSpecificOrder();// --- for specific order pass 1
         }
         public static void ActionFive()
         {
-            Console.WriteLine("welcome to action five");
+            Console.WriteLine("Ok lets see the details of a stores orders");
+            Order o = new Order();
+            o.ShowStoreOrders();// --- for specific order pass 1
         }
         public static void ActionSix()
         {
-            Console.WriteLine("welcome to action six");
+            Console.WriteLine("Ok lets see the details of a customars orders");
+            Order o = new Order();
+            o.ShowCustomerOrders();// --- for specific order pass 1
         }
         public static void ActionSeven()
         {
-            Console.WriteLine("welcome to action seven");
+            Console.WriteLine("Lets see what the stores have in stock");
+            Location l = new Location();
+            l.ShowInventory();
         }
         public static void ActionEight()
         {
-            Console.WriteLine("welcome to action eight");
+            Console.WriteLine("Lets see all our products");
+            Product p = new Product();
+            p.ShowAllProducts();
         }
 
         public static int GetAction()
@@ -137,7 +147,7 @@ namespace ProjectZero
             Console.WriteLine("4 -> display details of an order");
             Console.WriteLine("5 -> display all store orders");
             Console.WriteLine("6 -> display all orders of a customer");
-            Console.WriteLine("7 -> display available inventory by store");
+            Console.WriteLine("7 -> display inventory of all stores");
             Console.WriteLine("8 -> display all item details");
             while (true)
             {
