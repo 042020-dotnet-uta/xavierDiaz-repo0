@@ -9,6 +9,7 @@ namespace ProjectZero
         static void Main(string[] args)
         {
             Start:
+            Console.Clear();
             int action = GetAction();
             PerformAction(action);
             if(GoAgain() == 1)
@@ -73,7 +74,9 @@ namespace ProjectZero
         }
         public static void ActionOne()
         {
-            Console.WriteLine("welcome to action one");
+            Console.WriteLine("Ok lets make an order");
+            Order o = new Order();
+            o.MakeOder();
         }
         public static void ActionTwo()
         {
@@ -111,19 +114,19 @@ namespace ProjectZero
         {
             Console.WriteLine("Ok lets see the details of an order");
             Order o = new Order();
-            o.ShowSpecificOrder();// --- for specific order pass 1
+            o.ShowSpecificOrder();
         }
         public static void ActionFive()
         {
             Console.WriteLine("Ok lets see the details of a stores orders");
             Order o = new Order();
-            o.ShowStoreOrders();// --- for specific order pass 1
+            o.ShowStoreOrders();
         }
         public static void ActionSix()
         {
             Console.WriteLine("Ok lets see the details of a customars orders");
             Order o = new Order();
-            o.ShowCustomerOrders();// --- for specific order pass 1
+            o.ShowCustomerOrders();
         }
         public static void ActionSeven()
         {
@@ -141,14 +144,14 @@ namespace ProjectZero
         public static int GetAction()
         {
             Console.WriteLine("Hello, please enter a number that coresponds to which action you'd like to take");
-            Console.WriteLine("1 -> place order to store location for customer");
-            Console.WriteLine("2 -> add new customer");
-            Console.WriteLine("3 -> search customers by name");
-            Console.WriteLine("4 -> display details of an order");
-            Console.WriteLine("5 -> display all store orders");
-            Console.WriteLine("6 -> display all orders of a customer");
-            Console.WriteLine("7 -> display inventory of all stores");
-            Console.WriteLine("8 -> display all item details");
+            Console.WriteLine("1) place order to store location for customer");
+            Console.WriteLine("2) add new customer");
+            Console.WriteLine("3) search customers by name");
+            Console.WriteLine("4) display details of an order");
+            Console.WriteLine("5) display all store orders");
+            Console.WriteLine("6) display all orders of a customer");
+            Console.WriteLine("7) display inventory of all stores");
+            Console.WriteLine("8) display all item details");
             while (true)
             {
                 Console.Write(">> ");

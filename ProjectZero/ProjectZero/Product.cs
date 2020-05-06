@@ -66,5 +66,36 @@ namespace ProjectZero
 				}
 			}
 		}
+		public bool IsValidProduct(int i)
+		{
+			using (var db = new Pzero_DbContextClass())
+			{
+				var prods = db.Products
+					.FromSqlInterpolated($"SELECT * FROM Products WHERE ProductID = {i}")
+					.ToList();
+				if (prods.Count >= 1)
+					return true;
+				else
+				{
+					Console.WriteLine("Invalid product ID, try again");
+					return false;
+				}
+			}
+		}
+
+		public string GetPName(int i)//only called on valid product so should never return error
+		{
+			using (var db = new Pzero_DbContextClass())
+			{
+				var prods = db.Products
+					.FromSqlInterpolated($"SELECT * FROM Products WHERE ProductID = {i}")
+					.ToList();
+				foreach (var p in prods)
+				{
+					return p.PName;
+				}
+				return "error";
+			}
+		}
 	}
 }

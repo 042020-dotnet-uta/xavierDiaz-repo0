@@ -163,5 +163,18 @@ namespace ProjectZero
 				Console.WriteLine($"New entry added ID: {custSize}");
 			}
 		}
+		public bool IsValidCustomer(int i)
+		{
+			using (var db = new Pzero_DbContextClass())
+			{
+				var custs = db.Customers
+					.FromSqlInterpolated($"SELECT * FROM Customers WHERE CustomerID = {i}")
+					.ToList();
+				if (custs.Count >= 1)
+					return true;
+				else
+					return false;
+			}
+		}
 	}
 }

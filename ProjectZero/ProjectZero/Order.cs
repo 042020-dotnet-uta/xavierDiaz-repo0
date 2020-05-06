@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.SqlTypes;
+using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlTypes;
 using Microsoft.EntityFrameworkCore;
@@ -78,6 +79,184 @@ namespace ProjectZero
 		}
 		public Order()
 		{
+		}
+
+		public void MakeOder()
+		{
+			//verify customer input and validity ----------------------------
+			int cust;
+			while (true)
+			{
+				Console.Write("Enter your customer ID >> ");
+				string InP = Console.ReadLine();
+				if (IsInt(InP) != -1)
+					cust = IsInt(InP);
+				else
+					continue;
+				Customer c = new Customer();
+				if (c.IsValidCustomer(cust))
+					break;
+				else
+				{
+					Console.WriteLine("invalid customer ID try again");
+					continue;
+				}
+			}
+			//verify storeID input and validity ------------------------------
+			int store;
+			while (true)
+			{
+				Console.Write("Enter store ID to order from>> ");
+				string InP = Console.ReadLine();
+				if (IsInt(InP) != -1)
+					store = IsInt(InP);
+				else
+					continue;
+				Location l = new Location();
+				if (l.IsValidLocation(store))
+					break;
+				else
+				{
+					Console.WriteLine("invalid store ID try again");
+					continue;
+				}
+			}
+			List<int[]> orders = new List<int[]>();
+			//loop go get order ids and quantities
+			while (true)
+			{
+				int PID;
+				int quantity;
+				Console.Write("Enter an item ID you want to order>> ");
+				string InP = Console.ReadLine();
+				int temp = IsInt(InP);
+				if (temp != -1)
+				{
+					Product p = new Product();
+					if(p.IsValidProduct(temp))
+						PID = IsInt(InP);
+					else
+						continue;
+				}
+				else
+					continue;
+				bool repeat = false;// make sure it's not already in orders - otherwise updating may go past 0
+				foreach(var ord in orders)
+				{
+					if (PID == ord[0])
+						repeat = true;
+				}
+				if (repeat)
+				{
+					Console.Write("You already ordered that, want to add a different item? (y/n) >> ");
+					int still = YesNo(Console.ReadLine());
+					if (still == 1)
+						continue;
+					else
+						break;
+				}
+				HowMany:
+				Console.Write("How many do you want >> ");
+				InP = Console.ReadLine();
+				temp = IsInt(InP);
+				if (temp != -1)
+				{
+					Location l = new Location();
+					int max = l.MaxAvailable(PID, store);
+					if (temp <= max && temp > 0)
+						quantity = temp;
+					else
+					{
+						if (temp <= 0)
+						{
+							Console.WriteLine($"you need to add more than 0 of the item");
+							goto HowMany;
+						}
+						else
+						{
+							Console.WriteLine($"Sorry thats more than the store has, choose {max} or less");
+							goto HowMany;
+						}
+					}
+				}
+				else
+					goto HowMany;
+				orders.Add(new int[] { PID, quantity });
+				Console.Write("Want to add another item? (y/n) >> ");
+				int ans = YesNo(Console.ReadLine());
+				if (ans == 1)
+					continue;
+				else
+					break;
+			}
+			foreach (var ord in orders)
+			{
+				Console.WriteLine($"Ordering {ord[1]} of item {ord[0]}");
+			}
+			// use variables cust, store and orders to place the order
+			Console.WriteLine("now just add them");
+			// insert orders
+			foreach (var ord in orders)
+			{
+				int OID = (OrderSize() + 1);
+				Product p = new Product();
+				string prod = p.GetPName(ord[0]);
+				using(var db = new Pzero_DbContextClass())
+				{
+					try
+					{
+						var PlaceOrds = db.Orders
+							.FromSqlInterpolated($"INSERT INTO ORDERS VALUES({OID},{store},{cust},DATE('now'),{prod})")
+							.ToList();
+					}
+					catch { }
+				}
+				Location l = new Location();// --- update inventory
+				l.UpdateInventory(ord[0],ord[1]);				
+			}
+			Console.WriteLine("All done");
+		}
+
+		public int OrderSize()
+		{
+			using (var db = new Pzero_DbContextClass())
+			{
+				var ords = db.Orders
+					.FromSqlRaw("SELECT * FROM Orders")
+					.ToList();
+				return ords.Count;
+			}
+		}
+
+		public int YesNo(string ans)
+		{
+			while (true)
+			{
+				if (ans == "y")
+					return 1;
+				else if (ans == "n")
+					return 2;
+				else
+				{
+					Console.WriteLine("please enter y or n");
+					continue;
+				}
+			}
+		}
+		public int IsInt(string InP) 
+		{
+			int ID;
+			try
+			{
+				ID = Convert.ToInt32(InP);
+			}
+			catch
+			{
+				Console.WriteLine("Not an integer try again");
+				return -1;
+			}
+			return ID;
+
 		}
 
 		public void ShowCustomerOrders()
