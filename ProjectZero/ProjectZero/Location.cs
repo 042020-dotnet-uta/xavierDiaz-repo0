@@ -7,9 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProjectZero
 {
+	interface VerifyID
+	{
+		bool IsValidLocation(int i);
+	}
 	//Ideally this class would have things like address, hours, manager ID
 	//But for now it basically only holds and adjusts inventory
-	public class Location
+	public class Location : VerifyID
 	{
 		private int _InventoryID;// --- key
 		[Key]
@@ -67,7 +71,10 @@ namespace ProjectZero
 		public Location()
 		{
 		}
-
+		
+		/// <summary>
+		/// used to update inventory after a successful order is made
+		/// </summary>
 		public void UpdateInventory(int ID, int Q)
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -81,6 +88,9 @@ namespace ProjectZero
 				catch { }
 			}
 		}
+		/// <summary>
+		/// used to display store/inventory quickly
+		/// </summary>
 		public void ShowInventory()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -94,6 +104,9 @@ namespace ProjectZero
 				}
 			}
 		}
+		/// <summary>
+		/// Used to confirm store location is valid for order placement
+		/// </summary>
 		public bool IsValidLocation(int i)//will stop order if the store doesn't exist
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -108,6 +121,9 @@ namespace ProjectZero
 			}
 		}
 
+		/// <summary>
+		/// Returns how many of an item is available, so order can't exceede current volume
+		/// </summary>
 		public int MaxAvailable(int ItemID, int StoreID)//returns how many of an Item there is to reject oversized orders
 		{
 			using (var db = new Pzero_DbContextClass())

@@ -18,6 +18,9 @@ namespace ProjectZero
                 Console.WriteLine("Have a nice day");
         }
 
+        /// <summary>
+        /// Determine if using goto start label
+        /// </summary>
         public static int GoAgain()
         {
             Console.WriteLine();
@@ -38,6 +41,9 @@ namespace ProjectZero
             }
         }
 
+        /// <summary>
+        /// directs program to correct method
+        /// </summary>
         public static void PerformAction(int action)
         {
             // All this does is calls the desired action
@@ -72,18 +78,27 @@ namespace ProjectZero
                     break;
             }
         }
+        /// <summary>
+        /// action one: used to make order
+        /// </summary>
         public static void ActionOne()
         {
             Console.WriteLine("Ok lets make an order");
             Order o = new Order();
             o.MakeOder();
         }
+        /// <summary>
+        /// used to add new customer
+        /// </summary>
         public static void ActionTwo()
         {
             Console.WriteLine("Ok lets add a new customer");
             Customer c = new Customer();
             c.WriteCustomer();
         }
+        /// <summary>
+        /// used to search for customer
+        /// </summary>
         public static void ActionThree()
         {
             Console.WriteLine("Ok lets search for a customer");
@@ -110,37 +125,54 @@ namespace ProjectZero
                 }
             }
         }
+        /// <summary>
+        /// used to get order details
+        /// </summary>
         public static void ActionFour()
         {
             Console.WriteLine("Ok lets see the details of an order");
             Order o = new Order();
             o.ShowSpecificOrder();
         }
+        /// <summary>
+        /// used to see all orders from specified store
+        /// </summary>
         public static void ActionFive()
         {
             Console.WriteLine("Ok lets see the details of a stores orders");
             Order o = new Order();
             o.ShowStoreOrders();
         }
+        /// <summary>
+        /// used to see all orders of a customer
+        /// </summary>
         public static void ActionSix()
         {
             Console.WriteLine("Ok lets see the details of a customars orders");
             Order o = new Order();
             o.ShowCustomerOrders();
         }
+        /// <summary>
+        /// Extra: used to see all stock
+        /// </summary>
         public static void ActionSeven()
         {
             Console.WriteLine("Lets see what the stores have in stock");
             Location l = new Location();
             l.ShowInventory();
         }
+        /// <summary>
+        /// Extra: used to show all potential produts
+        /// </summary>
         public static void ActionEight()
         {
             Console.WriteLine("Lets see all our products");
             Product p = new Product();
             p.ShowAllProducts();
         }
-
+        /// <summary>
+        /// used to get desired action from user
+        /// </summary>
         public static int GetAction()
         {
             Console.WriteLine("Hello, please enter a number that coresponds to which action you'd like to take");

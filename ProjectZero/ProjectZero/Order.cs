@@ -80,7 +80,9 @@ namespace ProjectZero
 		public Order()
 		{
 		}
-
+		/// <summary>
+		/// Most complex method: used to create and place an order
+		/// </summary>
 		public void MakeOder()
 		{
 			//verify customer input and validity ----------------------------
@@ -217,6 +219,9 @@ namespace ProjectZero
 			Console.WriteLine("All done");
 		}
 
+		/// <summary>
+		/// mini method for generating new key value
+		/// </summary>
 		public int OrderSize()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -227,7 +232,9 @@ namespace ProjectZero
 				return ords.Count;
 			}
 		}
-
+		/// <summary>
+		/// mini method to validate yes or no input
+		/// </summary>
 		public int YesNo(string ans)
 		{
 			while (true)
@@ -243,6 +250,10 @@ namespace ProjectZero
 				}
 			}
 		}
+		/// <summary>
+		/// input validation: make sure what's entered is an int
+		/// exception handeling
+		/// </summary>
 		public int IsInt(string InP) 
 		{
 			int ID;
@@ -258,7 +269,9 @@ namespace ProjectZero
 			return ID;
 
 		}
-
+		/// <summary>
+		/// used to get order based by customer id 
+		/// </summary>
 		public void ShowCustomerOrders()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -281,6 +294,9 @@ namespace ProjectZero
 				}
 			}
 		}
+		/// <summary>
+		/// used to show orders by store id
+		/// </summary>
 		public void ShowStoreOrders()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -303,7 +319,9 @@ namespace ProjectZero
 				}
 			}
 		}
-
+		/// <summary>
+		/// used to show details of a specific order
+		/// </summary>
 		public void ShowSpecificOrder()
 		{
 			using (var db = new Pzero_DbContextClass())

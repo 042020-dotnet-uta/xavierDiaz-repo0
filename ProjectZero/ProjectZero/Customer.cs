@@ -121,7 +121,9 @@ namespace ProjectZero
 				}
 			}
 		}
-
+		/// <summary>
+		/// Can be used to read out all customer info
+		/// </summary>
 		public void ReadCustomers()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -135,6 +137,9 @@ namespace ProjectZero
 				}
 			}
 		}
+		/// <summary>
+		/// Used to write entry to Customer table
+		/// </summary>
 		public void WriteCustomer()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -143,6 +148,16 @@ namespace ProjectZero
 				string first = Console.ReadLine();
 				Console.Write("Last Name: ");
 				string last = Console.ReadLine();
+				prefSto:
+				Console.Write("Prefered store ID: ");
+				string prefSto = Console.ReadLine();
+				int prefStoInt = IsInt(prefSto);
+				Location l = new Location();
+				if (l.IsValidLocation(prefStoInt))
+				{
+					Console.WriteLine("Invalid store ID try again");
+					goto prefSto;
+				}
 				//auto increment isn't behaving so
 				int custSize;
 				var s = db.Customers
@@ -154,7 +169,7 @@ namespace ProjectZero
 				{
 					var custs = db.Customers
 						//.FromSqlInterpolated($"INSERT INTO Customers ( CustomerID, FName, LName, DefaultSto) VALUES ( {custSize}, {first}, {last}, 1)")
-						.FromSqlInterpolated($"INSERT INTO Customers VALUES ( {custSize}, {first}, {last}, 1)")
+						.FromSqlInterpolated($"INSERT INTO Customers VALUES ( {custSize}, {first}, {last}, {prefStoInt})")
 						.ToList();
 				}
 				catch
@@ -163,6 +178,27 @@ namespace ProjectZero
 				Console.WriteLine($"New entry added ID: {custSize}");
 			}
 		}
+		/// <summary>
+		/// converts to Int, unless not an int' then return -1
+		/// </summary>
+		public int IsInt(string InP)
+		{
+			int ID;
+			try
+			{
+				ID = Convert.ToInt32(InP);
+			}
+			catch
+			{
+				Console.WriteLine("Not an integer try again");
+				return -1;
+			}
+			return ID;
+
+		}
+		/// <summary>
+		/// Used to quickly determin if a customer exists, used for making orders
+		/// </summary>
 		public bool IsValidCustomer(int i)
 		{
 			using (var db = new Pzero_DbContextClass())

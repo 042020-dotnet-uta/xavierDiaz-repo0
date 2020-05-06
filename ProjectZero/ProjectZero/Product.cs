@@ -52,7 +52,9 @@ namespace ProjectZero
 		public Product()
 		{
 		}
-
+		/// <summary>
+		/// Used to quickly print out all products, called in main
+		/// </summary>
 		public void ShowAllProducts()
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -66,6 +68,9 @@ namespace ProjectZero
 				}
 			}
 		}
+		/// <summary>
+		/// Determines if provided product ID is valid for order placement
+		/// </summary>
 		public bool IsValidProduct(int i)
 		{
 			using (var db = new Pzero_DbContextClass())
@@ -83,6 +88,9 @@ namespace ProjectZero
 			}
 		}
 
+		/// <summary>
+		/// used to extract the name of ordered items
+		/// </summary>
 		public string GetPName(int i)//only called on valid product so should never return error
 		{
 			using (var db = new Pzero_DbContextClass())

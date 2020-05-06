@@ -8,13 +8,8 @@ namespace XUnitTestProjectZero
 {
     public class UnitTestPZ
     {
-        //private readonly Customer _sut;
-        private readonly Product _sut;
-        //private readonly Order _sut;
-        //private readonly Location;
         public UnitTestPZ()
         {
-            //_sut = new Product();
         }
 
         [Fact]
