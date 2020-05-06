@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectZero", "ProjectZero\ProjectZero.csproj", "{DE949DDA-C944-487C-B20C-60314F151316}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectZero", "ProjectZero\ProjectZero.csproj", "{DE949DDA-C944-487C-B20C-60314F151316}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XUnitTestProjectZero", "XUnitTestProjectZero\XUnitTestProjectZero.csproj", "{E394862F-C808-4EB3-84ED-CF1D8A7C6941}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{DE949DDA-C944-487C-B20C-60314F151316}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE949DDA-C944-487C-B20C-60314F151316}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE949DDA-C944-487C-B20C-60314F151316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E394862F-C808-4EB3-84ED-CF1D8A7C6941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E394862F-C808-4EB3-84ED-CF1D8A7C6941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E394862F-C808-4EB3-84ED-CF1D8A7C6941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E394862F-C808-4EB3-84ED-CF1D8A7C6941}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
