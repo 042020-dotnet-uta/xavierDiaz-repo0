@@ -196,7 +196,6 @@ namespace ProjectZero
 				Console.WriteLine($"Ordering {ord[1]} of item {ord[0]}");
 			}
 			// use variables cust, store and orders to place the order
-			Console.WriteLine("now just add them");
 			// insert orders
 			foreach (var ord in orders)
 			{

@@ -153,7 +153,7 @@ namespace ProjectZero
 				string prefSto = Console.ReadLine();
 				int prefStoInt = IsInt(prefSto);
 				Location l = new Location();
-				if (l.IsValidLocation(prefStoInt))
+				if (l.IsValidLocation(prefStoInt) == false)
 				{
 					Console.WriteLine("Invalid store ID try again");
 					goto prefSto;
