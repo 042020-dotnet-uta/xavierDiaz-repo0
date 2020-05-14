@@ -21,7 +21,7 @@ stages:
       - job: 'test'
         dependsOn: 'build'
         steps:
-          - script: 'dotnet test'
+          - script: dotnet test 'ProjectZero\XUnitTestProjectZero\XUnitTestProjectZero.csproj'
 
       - job: 'publish'
         dependsOn: 'test'
